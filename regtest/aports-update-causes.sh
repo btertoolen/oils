@@ -1,4 +1,4 @@
-#!/usr/local/bin/ysh_
+#!/usr/bin/env ysh
 #
 # Generate a new report, based on the latest report available.
 # Used to update causes in a report without rebuilding any packages.
@@ -105,7 +105,7 @@ proc deploy-new-report(new_epoch) {
   regtest/aports-html.sh deploy-wwz-op "_tmp/aports-report/$new_epoch.wwz"
 }
 
-proc update-latest(kind) {
+proc update-latest(original_epoch kind) {
   ### Create a new report based on the most recent published report
   ### Create the new report using a newer `causes.awk` file
   ### Does the following steps:
@@ -127,7 +127,6 @@ proc update-latest(kind) {
     exit 1
   }
 
-  var original_epoch=$(get-last-epoch $use_main)
   var new_epoch = calculateNewEpoch(use_main)
 
   echo "Generating new report with epoch $new_epoch based on $original_epoch for $kind"
