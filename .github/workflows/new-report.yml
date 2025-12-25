@@ -32,5 +32,12 @@ jobs:
       - name: aports-report
         run: |
           soil/github-actions.sh run-job aports-report podman
+      - name: publish-html-logs
+        run: |
+          soil/github-actions.sh publish-and-exit aports-report T
+      # - name: publish-html
+      #   run: |
+      #     soil/github-actions.sh publish-and-exit dummy T
+
 
 
